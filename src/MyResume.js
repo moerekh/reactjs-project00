@@ -3,7 +3,6 @@ import React from "react";
 
 const MYAPIKEY = process.env.REACT_APP_MY_API_KEY;
 const MYSPREADSHEETID = process.env.REACT_APP_MY_SPREADSHEET_ID;
-const SESSION_KEY = 'resume_info';
 const QUERYURL = `https://sheets.googleapis.com/v4/spreadsheets/${MYSPREADSHEETID}/values/Info?
 alt=json&key=${MYAPIKEY}`;
 
@@ -50,19 +49,18 @@ class MyResume extends React.Component{
     }
 
     render() {
-
-        const loadSessionInfo = () => {
-            sessionStorage.getItem(SESSION_KEY);
-        }
-
-        const saveSessionInfo = (info) => {
-            sessionStorage.setItem(SESSION_KEY, info);
-        }
+        const resume_info = this.state.resume_info;
 
         return (
-
             <div>
-                <h1>{this.state.resume_info.firstname} {this.state.resume_info.lastname} <br /> <small>{this.state.resume_info.career}</small></h1>
+                <h1>{resume_info.firstname} {resume_info.lastname} <br /> <small>{resume_info.career}</small></h1>
+                <div>
+                    <p>{resume_info.about}</p>
+                    <p>{resume_info.education}</p>
+                    <p>{resume_info.education_date}</p>
+                    <p>{resume_info.linkedin}</p>
+                    <p>{resume_info.github}</p>
+                </div>
             </div>
         );
     }
